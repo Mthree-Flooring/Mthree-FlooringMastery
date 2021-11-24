@@ -1,4 +1,4 @@
-package com.sg.classroster.controller;
+package com.sg.flooringmastery.controller;
 
 import com.mycompany.flooringmastery.service.FlooringMasteryDataValidationException;
 import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;

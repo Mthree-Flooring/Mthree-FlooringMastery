@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.sg.flooringmaster;
+package com.sg.flooringmastery;
 
 import com.mycompany.flooringmastery.service.FlooringMasteryServiceLayerImpl;
-import com.sg.classroster.controller.FlooringMasteryController;
+import com.sg.flooringmastery.controller.FlooringMasteryController;
 import com.sg.flooringmastery.dao.FlooringMasteryAuditDaoFileImpl;
 import com.sg.flooringmastery.dao.FlooringMasteryDaoFileImpl;
 import com.sg.flooringmastery.ui.FlooringMasteryView;
