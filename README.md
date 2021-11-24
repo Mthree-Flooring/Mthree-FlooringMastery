@@ -2,3 +2,5 @@
 
 
 Test read me
+
+Test cd
