@@ -1,0 +1,69 @@
+@options
+@packages
+@argfile
+-classpath
+'/Users/raymondtam/.m2/repository/org/springframework/spring-context/4.3.4.RELEASE/spring-context-4.3.4.RELEASE.jar:/Users/raymondtam/.m2/repository/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.jar:/Users/raymondtam/.m2/repository/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.jar:/Users/raymondtam/.m2/repository/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.jar:/Users/raymondtam/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar:/Users/raymondtam/.m2/repository/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.jar'
+-encoding
+'UTF-8'
+-protected
+-source
+'11'
+-sourcepath
+'/Users/raymondtam/Documents/Mthree-FlooringMastery/src/main/java'
+-author
+-bottom
+'Copyright &#169; 2021. All rights reserved.'
+-charset
+'UTF-8'
+-d
+'/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs'
+-docencoding
+'UTF-8'
+-doctitle
+'FlooringMastery 1.0-SNAPSHOT API'
+-linkoffline
+'https://docs.oracle.com/en/java/javase/11/docs/api' '/Users/raymondtam/Documents/Mthree-FlooringMastery/target/javadoc-bundle-options'
+-use
+-version
+-windowtitle
+'FlooringMastery 1.0-SNAPSHOT API'
+com.mycompany.flooringmastery.service
+com.sg.flooringmastery.dto
+com.sg.flooringmastery.ui
+com.sg.flooringmastery.dao
+com.sg.classroster.controller
+com.sg.flooringmaster
+'/Users/raymondtam/Documents/Mthree-FlooringMastery/src/main/java/DogGenetics.java'
+/Users/raymondtam/.m2/repository/org/springframework/spring-context/4.3.4.RELEASE/spring-context-4.3.4.RELEASE.jar = 1637599780573
+/Users/raymondtam/.m2/repository/org/springframework/spring-aop/4.3.4.RELEASE/spring-aop-4.3.4.RELEASE.jar = 1637599780030
+/Users/raymondtam/.m2/repository/org/springframework/spring-beans/4.3.4.RELEASE/spring-beans-4.3.4.RELEASE.jar = 1637599780422
+/Users/raymondtam/.m2/repository/org/springframework/spring-core/4.3.4.RELEASE/spring-core-4.3.4.RELEASE.jar = 1637599780966
+/Users/raymondtam/.m2/repository/commons-logging/commons-logging/1.2/commons-logging-1.2.jar = 1637599780215
+/Users/raymondtam/.m2/repository/org/springframework/spring-expression/4.3.4.RELEASE/spring-expression-4.3.4.RELEASE.jar = 1637599780231
+/Users/raymondtam/Documents/Mthree-FlooringMastery/src/main/java/DogGenetics.java = 1636830634170
+/Users/raymondtam/Documents/Mthree-FlooringMastery/src/main/java = 1637790661083
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/constant-values.html = 1637791119155
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/member-search-index.zip = 1637791119532
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/overview-tree.html = 1637791119453
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/index.html = 1637791119590
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/package-search-index.js = 1637791119523
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/package-search-index.zip = 1637791119528
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/package-use.html = 1637791119405
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/type-search-index.zip = 1637791119530
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/serialized-form.html = 1637791119183
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/index-all.html = 1637791119539
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/allpackages-index.html = 1637791119559
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/deprecated-list.html = 1637791119566
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/DogGenetics.html = 1637791118070
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/member-search-index.js = 1637791119531
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/allclasses.html = 1637791119575
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/script.js = 1637791119612
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/stylesheet.css = 1637791119611
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/overview-summary.html = 1637791119597
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/help-doc.html = 1637791119607
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/package-summary.html = 1637791119015
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/package-tree.html = 1637791119031
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/element-list = 1637791119003
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/allclasses-index.html = 1637791119550
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/type-search-index.js = 1637791119529
+/Users/raymondtam/Documents/Mthree-FlooringMastery/target/site/apidocs/search.js = 1637791119613
