@@ -10,6 +10,9 @@ package com.sg.flooringmastery.ui;
  * @author ahill
  */
 import com.sg.flooringmastery.ui.UserIO;
+import java.math.BigDecimal;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 import java.util.Scanner;
 
 public class UserIOConsoleImpl implements UserIO {
@@ -211,6 +214,43 @@ public class UserIOConsoleImpl implements UserIO {
             result = readDouble(msgPrompt);
         } while (result < min || result > max);
         return result;
+    }
+
+    @Override
+    public BigDecimal readBigDecimal(String msgPrompt) {
+                BigDecimal bigDecimalInput = null;
+                boolean invalidInput = true;
+        while (invalidInput) {
+            try {
+                System.out.println(msgPrompt);
+                
+                String stringInput = console.nextLine();
+                bigDecimalInput = new BigDecimal(stringInput);
+                invalidInput = false;
+            } catch (NumberFormatException e) {
+                this.print("Input error. Please enter numbers only.");
+            }
+        }
+        return bigDecimalInput;
+    }
+
+    @Override
+    public LocalDate readDate(String msgPrompt) {
+        LocalDate date = null;
+        boolean invalidInput = true;
+        
+        while (invalidInput) {
+            try {
+                System.out.println(msgPrompt);
+                
+                String stringInput = console.nextLine();
+                date = LocalDate.parse(stringInput);
+                invalidInput = false;
+            } catch (DateTimeException e) {
+                this.print("Input error. Date is not in the correct format.");
+            }
+        }
+        return date;
     }
 
 }
