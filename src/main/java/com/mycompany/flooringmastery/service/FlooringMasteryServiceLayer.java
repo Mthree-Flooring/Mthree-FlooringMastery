@@ -14,18 +14,18 @@ import java.util.List;
  */
 public interface FlooringMasteryServiceLayer {
  
-    void createStudent(Order student) throws
+    void createOrder(Order order) throws
             FlooringMasteryDuplicateIdException,
             FlooringMasteryDataValidationException,
             FlooringMasteryPersistenceException;
  
-    List<Order> getAllStudents() throws
+    List<Order> getAllOrders() throws
             FlooringMasteryPersistenceException;
  
-    Order getStudent(String studentId) throws
+    Order getOrder(Integer orderNumber) throws
             FlooringMasteryPersistenceException;
  
-    Order removeStudent(String studentId) throws
+    Order removeOrder(Integer orderNumber) throws
             FlooringMasteryPersistenceException;
  
 }

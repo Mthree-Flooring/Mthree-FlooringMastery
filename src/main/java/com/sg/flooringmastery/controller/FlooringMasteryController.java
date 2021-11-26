@@ -42,46 +42,7 @@ public class FlooringMasteryController {
     private int getMenuSelection() {
     return view.printMenuAndGetSelection();
 }
-//
-//private void createStudent() throws FlooringMasteryPersistenceException {
-//    view.displayCreateStudentBanner();
-//    boolean hasErrors = false;
-//    do {
-//        Order currentStudent = view.getNewStudentInfo();
-//        try {
-//            service.createStudent(currentStudent);
-//            view.displayCreateSuccessBanner();
-//            hasErrors = false;
-//        } catch (FlooringMasteryDuplicateIdException | FlooringMasteryDataValidationException e) {
-//            hasErrors = true;
-//            view.displayErrorMessage(e.getMessage());
-//        }
-//    } while (hasErrors);
-//}
-//
-//private void listStudents() throws FlooringMasteryPersistenceException {
-//    List<Order> studentList = service.getAllStudents();
-//     
-//    view.displayStudentList(studentList);
-//}
-//
-//private void viewStudent() throws FlooringMasteryPersistenceException {
-//     String studentId = view.getStudentIdChoice();
-//     Order student = service.getStudent(studentId) ;
-//     view.displayStudent(student);
-//}
-//
-//
-//private void removeStudent() throws FlooringMasteryPersistenceException {
-//    view.displayRemoveStudentBanner();
-//    String studentId = view.getStudentIdChoice();
-//    service.removeStudent(studentId);
-//    view.displayRemoveSuccessBanner();
-//}
-//
-//private void unknownCommand() {
-//    view.displayUnknownCommandBanner();
-//}
+
 
 //private void exitMessage() {
 //    view.displayExitBanner();

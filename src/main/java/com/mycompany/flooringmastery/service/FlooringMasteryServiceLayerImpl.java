@@ -26,72 +26,92 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     this.auditDao = auditDao;
 }
 
-    public FlooringMasteryServiceLayerImpl(FlooringMasteryDao myDao) {
+//    public FlooringMasteryServiceLayerImpl(FlooringMasteryDao myDao) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
+//    @Override
+//    public void createStudent(Order student) throws 
+//        FlooringMasteryDuplicateIdException,
+//        FlooringMasteryDataValidationException, 
+//        FlooringMasteryPersistenceException {
+//
+//    // First check to see if there is alreay a student 
+//    // associated with the given student's id
+//    // If so, we're all done here - 
+//    // throw a FlooringMasteryDuplicateIdException
+//    if (dao.getStudent(student.getStudentId()) != null) {
+//        throw new FlooringMasteryDuplicateIdException(
+//                "ERROR: Could not create student.  Student Id "
+//                + student.getStudentId()
+//                + " already exists");
+//    }
+//
+//    // Now validate all the fields on the given Student object.  
+//    // This method will throw an
+//    // exception if any of the validation rules are violated.
+//    validateStudentData(student);
+//
+//    // We passed all our business rules checks so go ahead 
+//    // and persist the Student object
+//    dao.addStudent(student.getStudentId(), student);
+//
+//    // The student was successfully created, now write to the audit log
+//    auditDao.writeAuditEntry(
+//            "Student " + student.getStudentId() + " CREATED.");
+//
+//}
+//
+//    @Override
+//    public List<Order> getAllStudents() throws FlooringMasteryPersistenceException {
+//        return dao.getAllStudents();
+//    }
+//
+//    @Override
+//    public Order getStudent(String studentId) throws FlooringMasteryPersistenceException {
+//        return dao.getStudent(studentId);
+//    }
+//
+//    @Override
+//   public Order removeStudent(String studentId) throws FlooringMasteryPersistenceException {
+//    Order removedStudent = dao.removeStudent(studentId);
+//    // Write to audit log
+//    auditDao.writeAuditEntry("Student " + studentId + " REMOVED.");
+//    return removedStudent;
+//}
+//
+//    private void validateStudentData(Order student) throws
+//            FlooringMasteryDataValidationException {
+//
+//        if (student.getFirstName() == null
+//                || student.getFirstName().trim().length() == 0
+//                || student.getLastName() == null
+//                || student.getLastName().trim().length() == 0
+//                || student.getCohort() == null
+//                || student.getCohort().trim().length() == 0) {
+//
+//            throw new FlooringMasteryDataValidationException(
+//                    "ERROR: All fields [First Name, Last Name, Cohort] are required.");
+//        }
+//    }
+
+    @Override
+    public void createOrder(Order order) throws FlooringMasteryDuplicateIdException, FlooringMasteryDataValidationException, FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    @Override
-    public void createStudent(Order student) throws 
-        FlooringMasteryDuplicateIdException,
-        FlooringMasteryDataValidationException, 
-        FlooringMasteryPersistenceException {
-
-    // First check to see if there is alreay a student 
-    // associated with the given student's id
-    // If so, we're all done here - 
-    // throw a FlooringMasteryDuplicateIdException
-    if (dao.getStudent(student.getStudentId()) != null) {
-        throw new FlooringMasteryDuplicateIdException(
-                "ERROR: Could not create student.  Student Id "
-                + student.getStudentId()
-                + " already exists");
-    }
-
-    // Now validate all the fields on the given Student object.  
-    // This method will throw an
-    // exception if any of the validation rules are violated.
-    validateStudentData(student);
-
-    // We passed all our business rules checks so go ahead 
-    // and persist the Student object
-    dao.addStudent(student.getStudentId(), student);
-
-    // The student was successfully created, now write to the audit log
-    auditDao.writeAuditEntry(
-            "Student " + student.getStudentId() + " CREATED.");
-
-}
 
     @Override
-    public List<Order> getAllStudents() throws FlooringMasteryPersistenceException {
-        return dao.getAllStudents();
+    public List<Order> getAllOrders() throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Order getStudent(String studentId) throws FlooringMasteryPersistenceException {
-        return dao.getStudent(studentId);
+    public Order getOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-   public Order removeStudent(String studentId) throws FlooringMasteryPersistenceException {
-    Order removedStudent = dao.removeStudent(studentId);
-    // Write to audit log
-    auditDao.writeAuditEntry("Student " + studentId + " REMOVED.");
-    return removedStudent;
-}
-
-    private void validateStudentData(Order student) throws
-            FlooringMasteryDataValidationException {
-
-        if (student.getFirstName() == null
-                || student.getFirstName().trim().length() == 0
-                || student.getLastName() == null
-                || student.getLastName().trim().length() == 0
-                || student.getCohort() == null
-                || student.getCohort().trim().length() == 0) {
-
-            throw new FlooringMasteryDataValidationException(
-                    "ERROR: All fields [First Name, Last Name, Cohort] are required.");
-        }
+    public Order removeOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
