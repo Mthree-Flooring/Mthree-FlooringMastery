@@ -2,6 +2,7 @@ package com.sg.flooringmastery.controller;
 
 import com.mycompany.flooringmastery.service.FlooringMasteryDataValidationException;
 import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
+import com.mycompany.flooringmastery.service.FlooringMasteryNoOrdersException;
 import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 import com.sg.flooringmastery.dao.FlooringMasteryDaoFileImpl;
 import com.sg.flooringmastery.dto.Order;
@@ -11,6 +12,8 @@ import com.sg.flooringmastery.ui.UserIOConsoleImpl;
 import java.util.List;
 import com.sg.flooringmastery.dao.FlooringMasteryDao;
 import com.mycompany.flooringmastery.service.FlooringMasteryServiceLayer;
+import java.time.DateTimeException;
+import java.time.LocalDate;
 
 
 /*
@@ -96,7 +99,7 @@ public class FlooringMasteryController {
 
             switch (menuSelection) {
                 case 1:
-                    System.out.println("1");
+                    displayOrders();
                     break;
                 case 2:
                     System.out.println("2");
@@ -124,6 +127,25 @@ public class FlooringMasteryController {
 //        view.displayErrorMessage(e.getMessage());
 //    }
 }
+  
+  private void displayOrders() throws FlooringMasteryNoOrdersException, FlooringMasteryPersistenceException {
+      view.displayListOrdersBanner();
+      boolean errorsFound = false;
+      List<Order> orderList = null;
+      
+      do {
+          try {
+              LocalDate enteredOrderDate = view.getOrderListByDate();
+              orderList = service.getOrderList(enteredOrderDate); // need to add getOrderList on ServiceLayer
+              view.displayOrderListBanner(enteredOrderDate);
+              errorsFound = false;
+          } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e) {
+              errorsFound = true;
+              view.displayErrorMessage(e.getMessage());
+          }
+      } while (errorsFound);
+      view.displayOrderList(orderList);
+  }
 
  
 

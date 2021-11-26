@@ -2,6 +2,7 @@ package com.sg.flooringmastery.ui;
 
 import com.sg.flooringmastery.dto.Order;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 /*
@@ -35,6 +36,19 @@ public class FlooringMasteryView {
         io.print("   * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *");
         return io.readInt("Please select from the choices above", 1, 6);
 
+    }
+    
+    public LocalDate getOrderListByDate() {
+            io.print("Please enter a Date to display a list of Orders: ");
+            return io.readDate("Follow YYYY-MM-DD format when entering Date.");
+    }
+    
+    public void displayOrderListBanner(LocalDate orderDate) {
+        io.print("=*=*=*= All Orders for " + orderDate + " =*=*=*=" );
+    }
+    
+    public void displayListOrdersBanner() {
+        io.print("=*=*=*= List Orders =*=*=*=");
     }
     
         public String displayOrderList(List<Order> orderList) {
@@ -74,4 +88,13 @@ public class FlooringMasteryView {
         io.print("---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
         return io.readString("Please hit enter to continue");
         }   
+        
+        
+        
+        
+    
+    public void displayErrorMessage(String errorMsg) {
+        io.print("=== ERROR ===");
+        io.print(errorMsg);
+    }   
 }
