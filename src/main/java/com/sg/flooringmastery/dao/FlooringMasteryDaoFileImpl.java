@@ -12,6 +12,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
+import java.math.BigDecimal;
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -23,24 +25,21 @@ import java.util.Scanner;
  */
 public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
 
-    private Map<String, Order> students = new HashMap<>();
+    private Map<Integer, Order> order = new HashMap<>();
 
-    public final String ROSTER_FILE;
-    public static final String DELIMITER = "::";
+    public final String ORDER_FILE;
+    public static final String DELIMITER = ",";
 
     public FlooringMasteryDaoFileImpl() {
-        ROSTER_FILE = "roster.txt";
+        ORDER_FILE = "Orders_06012013.txt"; //is a sample file which is included in the sample download above.
+
     }
 
     public FlooringMasteryDaoFileImpl(String rosterTextFile) {
-        ROSTER_FILE = rosterTextFile;
+        ORDER_FILE = rosterTextFile;
     }
 
-//    FlooringMasteryDaoFileImpl(String testFile) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-
-    private Order unmarshallStudent(String studentAsText) {
+    private Order unmarshallOrder(String orderAsText) {
         // studentAsText is expecting a line read in from our file.
         // For example, it might look like this:
         // 1234::Ada::Lovelace::Java-September1842
@@ -54,28 +53,53 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         // |    |   |        |                  |
         // --------------------------------------
         //  [0]  [1]    [2]         [3]
-        String[] studentTokens = studentAsText.split(DELIMITER);
+        String[] orderTokens = orderAsText.split(DELIMITER);
 
         // Given the pattern above, the student Id is in index 0 of the array.
-        String studentId = studentTokens[0];
+        int orderNumber = Integer.parseInt(orderTokens[0]);
 
         // Which we can then use to create a new Student object to satisfy
         // the requirements of the Student constructor.
-        Order studentFromFile = new Order(studentId);
+        Order orderFromFile = new Order(orderNumber);
 
         // However, there are 3 remaining tokens that need to be set into the
         // new student object. Do this manually by using the appropriate setters.
         // Index 1 - FirstName
-        studentFromFile.setFirstName(studentTokens[1]);
+        orderFromFile.setCustomerName(orderTokens[1]);
 
         // Index 2 - LastName
-        studentFromFile.setLastName(studentTokens[2]);
+        orderFromFile.setState(orderTokens[2]);
 
         // Index 3 - Cohort
-        studentFromFile.setCohort(studentTokens[3]);
+        orderFromFile.setProductType(orderTokens[3]);
 
+        BigDecimal taxRate = new BigDecimal(orderTokens[4]);
+        orderFromFile.setTaxRate(taxRate);
+        orderFromFile.setProductType(orderTokens[5]);
+
+        BigDecimal area = new BigDecimal(orderTokens[6]);
+        orderFromFile.setArea(area);
         // We have now created a student! Return it!
-        return studentFromFile;
+        BigDecimal costPerSquareFoot = new BigDecimal(orderTokens[7]);
+        orderFromFile.setCostPerSquareFoot(costPerSquareFoot);
+
+        BigDecimal laborCostPerSquareFoot = new BigDecimal(orderTokens[8]);
+        orderFromFile.setLaborCostPerSquareFoot(laborCostPerSquareFoot);
+
+        BigDecimal materialCost = new BigDecimal(orderTokens[9]);
+        orderFromFile.setMaterialCost(materialCost);
+
+        BigDecimal laborCost = new BigDecimal(orderTokens[10]);
+        orderFromFile.setLaborCost(laborCost);
+
+        BigDecimal tax = new BigDecimal(orderTokens[11]);
+        orderFromFile.setTax(tax);
+
+        BigDecimal total = new BigDecimal(orderTokens[12]);
+        orderFromFile.setTotal(total);
+
+        return orderFromFile;
+
     }
 
     private void loadRoster() throws FlooringMasteryPersistenceException {
@@ -85,7 +109,7 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
             // Create Scanner for reading the file
             scanner = new Scanner(
                     new BufferedReader(
-                            new FileReader(ROSTER_FILE)));
+                            new FileReader(ORDER_FILE)));
         } catch (FileNotFoundException e) {
             throw new FlooringMasteryPersistenceException(
                     "-_- Could not load roster data into memory.", e);
@@ -93,7 +117,7 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         // currentLine holds the most recent line read from the file
         String currentLine;
         // currentStudent holds the most recent student unmarshalled
-        Order currentStudent;
+        Order currentOrder;
         // Go through ROSTER_FILE line by line, decoding each line into a 
         // Student object by calling the unmarshallStudent method.
         // Process while we have more lines in the file
@@ -101,17 +125,17 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
             // get the next line in the file
             currentLine = scanner.nextLine();
             // unmarshall the line into a Student
-            currentStudent = unmarshallStudent(currentLine);
+            currentOrder = unmarshallOrder(currentLine);
 
             // We are going to use the student id as the map key for our student object.
             // Put currentStudent into the map using student id as the key
-            students.put(currentStudent.getStudentId(), currentStudent);
+            order.put(currentOrder.getOrderNumber(), currentOrder);
         }
         // close scanner
         scanner.close();
     }
 
-    private String marshallStudent(Order aStudent) {
+    private String marshallOrder(Order aOrder) {
         // We need to turn a Student object into a line of text for our file.
         // For example, we need an in memory object to end up like this:
         // 4321::Charles::Babbage::Java-September1842
@@ -119,28 +143,35 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         // It's not a complicated process. Just get out each property,
         // and concatenate with our DELIMITER as a kind of spacer. 
         // Start with the student id, since that's supposed to be first.
-        String studentAsText = aStudent.getStudentId() + DELIMITER;
+        String orderAsText = aOrder.getProductType() + DELIMITER;
 
         // add the rest of the properties in the correct order:
         // FirstName
-        studentAsText += aStudent.getFirstName() + DELIMITER;
+        orderAsText += aOrder.getTaxRate() + DELIMITER;
 
         // LastName
-        studentAsText += aStudent.getLastName() + DELIMITER;
+        orderAsText += aOrder.getArea().toString() + DELIMITER;
 
         // Cohort - don't forget to skip the DELIMITER here.
-        studentAsText += aStudent.getCohort();
+        orderAsText += aOrder.getCostPerSquareFoot().toString() + DELIMITER;
 
-        // We have now turned a student to text! Return it!
-        return studentAsText;
+        orderAsText += aOrder.getLaborCostPerSquareFoot().toString() + DELIMITER;
+
+        orderAsText += aOrder.getMaterialCost().toString() + DELIMITER;
+        orderAsText += aOrder.getLaborCost().toString() + DELIMITER;
+        orderAsText += aOrder.getTax().toString() + DELIMITER;
+        orderAsText += aOrder.getTotal().toString() + DELIMITER;
+
+         // We have now turned a student to text! Return it!
+        return orderAsText;
     }
 
     /**
      * Writes all students in the roster out to a ROSTER_FILE. See loadRoster
      * for file format.
      *
-     * @throws FlooringMasteryPersistenceException if an error occurs writing to the
-     * file
+     * @throws FlooringMasteryPersistenceException if an error occurs writing to
+     * the file
      */
     private void writeRoster() throws FlooringMasteryPersistenceException {
         // NOTE FOR APPRENTICES: We are not handling the IOException - but
@@ -151,10 +182,10 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         PrintWriter out;
 
         try {
-            out = new PrintWriter(new FileWriter(ROSTER_FILE));
+            out = new PrintWriter(new FileWriter(ORDER_FILE));
         } catch (IOException e) {
             throw new FlooringMasteryPersistenceException(
-                    "Could not save student data.", e);
+                    "Could not save order data.", e);
         }
 
         // Write out the Student objects to the roster file.
@@ -162,13 +193,13 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         // get the Collection of Students and iterate over them but we've
         // already created a method that gets a List of Students so
         // we'll reuse it.
-        String studentAsText;
-        List<Order> studentList = this.getAllStudents();
-        for (Order currentStudent : studentList) {
+        String orderAsText;
+        List<Order> orderList = this.getAllOrders();
+        for (Order currentOrder : orderList) {
             // turn a Student into a String
-            studentAsText = marshallStudent(currentStudent);
+            orderAsText = marshallOrder(currentOrder);
             // write the Student object to the file
-            out.println(studentAsText);
+            out.println(orderAsText);
             // force PrintWriter to write line to the file
             out.flush();
         }
@@ -176,34 +207,25 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         out.close();
     }
 
-    // @Override
-    // public Order addStudent(String studentId, Order student)
-    //         throws FlooringMasteryPersistenceException {
-    //     loadRoster();
-    //     Order newStudent = students.put(studentId, student);
-    //     writeRoster();
-    //     return newStudent;
-    // }
+    @Override
+    public Order addOrder(Integer orderNumber, Order order) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    // @Override
-    // public Order getStudent(String studentId)
-    //         throws FlooringMasteryPersistenceException {
-    //     loadRoster();
-    //     return students.get(studentId);
-    // }
+    @Override
+    public List<Order> getAllOrders() throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    // @Override
-    // public Order removeStudent(String studentId)
-    //         throws FlooringMasteryPersistenceException {
-    //     loadRoster();
-    //     Order removedStudent = students.remove(studentId);
-    //     writeRoster();
-    //     return removedStudent;
-    // }
+    @Override
+    public Order getOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
-    // @Override
-    // public List<Order> getAllStudents() {
-    //     return new ArrayList<Order>(students.values());
-    // }
+    @Override
+    public Order removeOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 }

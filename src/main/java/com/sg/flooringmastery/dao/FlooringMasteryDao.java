@@ -24,7 +24,7 @@ public interface FlooringMasteryDao {
      * student id if it exists, null otherwise
      * @throws FlooringMasteryPersistenceException
      */
-    Order addStudent(String studentId, Order student)
+    Order addOrder(Integer orderNumber, Order order)
      throws FlooringMasteryPersistenceException;
 
     /**
@@ -33,7 +33,7 @@ public interface FlooringMasteryDao {
      * @return Student List containing all students on the roster.
      * @throws FlooringMasteryPersistenceException
      */
-    List<Order> getAllStudents()
+    List<Order> getAllOrders()
      throws FlooringMasteryPersistenceException;
 
     /**
@@ -45,7 +45,7 @@ public interface FlooringMasteryDao {
      * null if no such student exists
      * @throws FlooringMasteryPersistenceException
      */
-    Order getStudent(String studentId)
+    Order getOrder(Integer orderNumber)
      throws FlooringMasteryPersistenceException;
 
     /**
@@ -58,6 +58,6 @@ public interface FlooringMasteryDao {
      * was associated with the given student id
      * @throws FlooringMasteryPersistenceException
      */
-    Order removeStudent(String studentId)
+    Order removeOrder(Integer orderNumber)
      throws FlooringMasteryPersistenceException;
 }

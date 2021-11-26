@@ -1,7 +1,7 @@
 package com.sg.flooringmastery.controller;
 
-import com.mycompany.flooringmastery.service.FlooringMasteryDataValidationException;
-import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
+//import com.mycompany.flooringmastery.service.FlooringMasteryDataValidationException;
+//import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
 import com.mycompany.flooringmastery.service.FlooringMasteryNoOrdersException;
 import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 import com.sg.flooringmastery.dao.FlooringMasteryDaoFileImpl;
@@ -45,46 +45,7 @@ public class FlooringMasteryController {
     private int getMenuSelection() {
     return view.printMenuAndGetSelection();
 }
-//
-//private void createStudent() throws FlooringMasteryPersistenceException {
-//    view.displayCreateStudentBanner();
-//    boolean hasErrors = false;
-//    do {
-//        Order currentStudent = view.getNewStudentInfo();
-//        try {
-//            service.createStudent(currentStudent);
-//            view.displayCreateSuccessBanner();
-//            hasErrors = false;
-//        } catch (FlooringMasteryDuplicateIdException | FlooringMasteryDataValidationException e) {
-//            hasErrors = true;
-//            view.displayErrorMessage(e.getMessage());
-//        }
-//    } while (hasErrors);
-//}
-//
-//private void listStudents() throws FlooringMasteryPersistenceException {
-//    List<Order> studentList = service.getAllStudents();
-//     
-//    view.displayStudentList(studentList);
-//}
-//
-//private void viewStudent() throws FlooringMasteryPersistenceException {
-//     String studentId = view.getStudentIdChoice();
-//     Order student = service.getStudent(studentId) ;
-//     view.displayStudent(student);
-//}
-//
-//
-//private void removeStudent() throws FlooringMasteryPersistenceException {
-//    view.displayRemoveStudentBanner();
-//    String studentId = view.getStudentIdChoice();
-//    service.removeStudent(studentId);
-//    view.displayRemoveSuccessBanner();
-//}
-//
-//private void unknownCommand() {
-//    view.displayUnknownCommandBanner();
-//}
+
 
 //private void exitMessage() {
 //    view.displayExitBanner();
@@ -99,7 +60,7 @@ public class FlooringMasteryController {
 
             switch (menuSelection) {
                 case 1:
-                    displayOrders();
+//                    displayOrders();
                     break;
                 case 2:
                     System.out.println("2");
@@ -128,24 +89,24 @@ public class FlooringMasteryController {
 //    }
 }
   
-  private void displayOrders() throws FlooringMasteryNoOrdersException, FlooringMasteryPersistenceException {
-      view.displayListOrdersBanner();
-      boolean errorsFound = false;
-      List<Order> orderList = null;
-      
-      do {
-          try {
-              LocalDate enteredOrderDate = view.getOrderListByDate();
-              orderList = service.getOrderList(enteredOrderDate); // need to add getOrderList on ServiceLayer
-              view.displayOrderListBanner(enteredOrderDate);
-              errorsFound = false;
-          } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e) {
-              errorsFound = true;
-              view.displayErrorMessage(e.getMessage());
-          }
-      } while (errorsFound);
-      view.displayOrderList(orderList);
-  }
+//  private void displayOrders() throws FlooringMasteryNoOrdersException, FlooringMasteryPersistenceException {
+//      view.displayListOrdersBanner();
+//      boolean errorsFound = false;
+//      List<Order> orderList = null;
+//      
+//      do {
+//          try {
+//              LocalDate enteredOrderDate = view.getOrderListByDate();
+//              orderList = service.getOrderList(enteredOrderDate); // need to add getOrderList on ServiceLayer
+//              view.displayOrderListBanner(enteredOrderDate);
+//              errorsFound = false;
+//          } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e) {
+//              errorsFound = true;
+//              view.displayErrorMessage(e.getMessage());
+//          }
+//      } while (errorsFound);
+//      view.displayOrderList(orderList);
+//  }
 
  
 
