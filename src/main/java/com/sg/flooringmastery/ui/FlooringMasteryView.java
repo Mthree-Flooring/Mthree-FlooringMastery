@@ -59,7 +59,7 @@ public class FlooringMasteryView {
             String orderInfo = String.format(
                     "%16s  %16s  %16s  %16s  %16s  %16s  %16s  %16s  %16s  %16s  %16s",
                     currentOrder.getCustomerName(),
-                    currentOrder.getStateAbbr(),
+                    currentOrder.getState(),
                     currentOrder.getProductType(),
                     currentOrder.getTaxRate().toString(),
                     currentOrder.getArea().toString(),

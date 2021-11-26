@@ -42,83 +42,87 @@ public class FlooringMasteryController {
     private int getMenuSelection() {
     return view.printMenuAndGetSelection();
 }
+//
+//private void createStudent() throws FlooringMasteryPersistenceException {
+//    view.displayCreateStudentBanner();
+//    boolean hasErrors = false;
+//    do {
+//        Order currentStudent = view.getNewStudentInfo();
+//        try {
+//            service.createStudent(currentStudent);
+//            view.displayCreateSuccessBanner();
+//            hasErrors = false;
+//        } catch (FlooringMasteryDuplicateIdException | FlooringMasteryDataValidationException e) {
+//            hasErrors = true;
+//            view.displayErrorMessage(e.getMessage());
+//        }
+//    } while (hasErrors);
+//}
+//
+//private void listStudents() throws FlooringMasteryPersistenceException {
+//    List<Order> studentList = service.getAllStudents();
+//     
+//    view.displayStudentList(studentList);
+//}
+//
+//private void viewStudent() throws FlooringMasteryPersistenceException {
+//     String studentId = view.getStudentIdChoice();
+//     Order student = service.getStudent(studentId) ;
+//     view.displayStudent(student);
+//}
+//
+//
+//private void removeStudent() throws FlooringMasteryPersistenceException {
+//    view.displayRemoveStudentBanner();
+//    String studentId = view.getStudentIdChoice();
+//    service.removeStudent(studentId);
+//    view.displayRemoveSuccessBanner();
+//}
+//
+//private void unknownCommand() {
+//    view.displayUnknownCommandBanner();
+//}
 
-private void createStudent() throws FlooringMasteryPersistenceException {
-    view.displayCreateStudentBanner();
-    boolean hasErrors = false;
-    do {
-        Order currentStudent = view.getNewStudentInfo();
-        try {
-            service.createStudent(currentStudent);
-            view.displayCreateSuccessBanner();
-            hasErrors = false;
-        } catch (FlooringMasteryDuplicateIdException | FlooringMasteryDataValidationException e) {
-            hasErrors = true;
-            view.displayErrorMessage(e.getMessage());
-        }
-    } while (hasErrors);
-}
-
-private void listStudents() throws FlooringMasteryPersistenceException {
-    List<Order> studentList = service.getAllStudents();
-     
-    view.displayStudentList(studentList);
-}
-
-private void viewStudent() throws FlooringMasteryPersistenceException {
-     String studentId = view.getStudentIdChoice();
-     Order student = service.getStudent(studentId) ;
-     view.displayStudent(student);
-}
-
-
-private void removeStudent() throws FlooringMasteryPersistenceException {
-    view.displayRemoveStudentBanner();
-    String studentId = view.getStudentIdChoice();
-    service.removeStudent(studentId);
-    view.displayRemoveSuccessBanner();
-}
-
-private void unknownCommand() {
-    view.displayUnknownCommandBanner();
-}
-
-private void exitMessage() {
-    view.displayExitBanner();
-}
+//private void exitMessage() {
+//    view.displayExitBanner();
+//}
   public void run() {
     boolean keepGoing = true;
     int menuSelection = 0;
-    try {
+//    try {
         while (keepGoing) {
 
             menuSelection = getMenuSelection();
 
             switch (menuSelection) {
                 case 1:
-                    listStudents();
+                    System.out.println("1");
                     break;
                 case 2:
-                    createStudent();
+                    System.out.println("2");
                     break;
                 case 3:
-                    viewStudent();
+                     System.out.println("3");
                     break;
                 case 4:
-                    removeStudent();
+                      System.out.println("4");
                     break;
-                case 5:
+                case 5: 
+                    System.out.println("5");
+                    break;
+                case 6:
                     keepGoing = false;
                     break;
                 default:
-                    unknownCommand();
+                      System.out.println("default");
             }
 
         }
-        exitMessage();
-    } catch (FlooringMasteryPersistenceException e) {
-        view.displayErrorMessage(e.getMessage());
-    }
+//        exitMessage();
+//    } 
+//    catch (FlooringMasteryPersistenceException e) {
+//        view.displayErrorMessage(e.getMessage());
+//    }
 }
 
  
