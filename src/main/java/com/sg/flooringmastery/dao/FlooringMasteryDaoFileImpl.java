@@ -176,34 +176,34 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         out.close();
     }
 
-    @Override
-    public Order addStudent(String studentId, Order student)
-            throws FlooringMasteryPersistenceException {
-        loadRoster();
-        Order newStudent = students.put(studentId, student);
-        writeRoster();
-        return newStudent;
-    }
+    // @Override
+    // public Order addStudent(String studentId, Order student)
+    //         throws FlooringMasteryPersistenceException {
+    //     loadRoster();
+    //     Order newStudent = students.put(studentId, student);
+    //     writeRoster();
+    //     return newStudent;
+    // }
 
-    @Override
-    public Order getStudent(String studentId)
-            throws FlooringMasteryPersistenceException {
-        loadRoster();
-        return students.get(studentId);
-    }
+    // @Override
+    // public Order getStudent(String studentId)
+    //         throws FlooringMasteryPersistenceException {
+    //     loadRoster();
+    //     return students.get(studentId);
+    // }
 
-    @Override
-    public Order removeStudent(String studentId)
-            throws FlooringMasteryPersistenceException {
-        loadRoster();
-        Order removedStudent = students.remove(studentId);
-        writeRoster();
-        return removedStudent;
-    }
+    // @Override
+    // public Order removeStudent(String studentId)
+    //         throws FlooringMasteryPersistenceException {
+    //     loadRoster();
+    //     Order removedStudent = students.remove(studentId);
+    //     writeRoster();
+    //     return removedStudent;
+    // }
 
-    @Override
-    public List<Order> getAllStudents() {
-        return new ArrayList<Order>(students.values());
-    }
+    // @Override
+    // public List<Order> getAllStudents() {
+    //     return new ArrayList<Order>(students.values());
+    // }
 
 }
