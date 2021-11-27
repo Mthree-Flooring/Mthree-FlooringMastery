@@ -316,7 +316,9 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
 
     @Override
     public List<Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        List<Order> allOrdersByDate = new ArrayList(order.values());
+        this.order.clear();
+        return allOrdersByDate;
     }
 
     @Override
