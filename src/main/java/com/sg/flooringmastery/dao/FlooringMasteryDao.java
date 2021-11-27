@@ -35,6 +35,8 @@ public interface FlooringMasteryDao {
      */
     List<Order> getAllOrders()
      throws FlooringMasteryPersistenceException;
+    String [] listAllOrders();
+    List <Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException;
 
     /**
      * Returns the student object associated with the given student id.

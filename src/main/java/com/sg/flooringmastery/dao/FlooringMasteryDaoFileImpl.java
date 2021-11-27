@@ -308,10 +308,28 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         return addedOrder;
         
     }
+    
+        @Override
+    public String[] listAllOrders() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public List<Order> getAllOrders() throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        String [] allOrderFiles = listAllOrders();
+        
+        List<Order> allOrders = new ArrayList<>();
+        
+        for (String orderFile : allOrderFiles) {
+            List<Order> ordersForDate = getAllOrdersByDate(orderFile);
+            ordersForDate.forEach(order -> { allOrders.add(order); });
+        }
+        return allOrders;
     }
 
     @Override

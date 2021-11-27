@@ -127,7 +127,12 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     }
 
     @Override
-    public List<Order> getAllOrders() throws FlooringMasteryPersistenceException {
+    public List<Order> getAllOrders(String orderWithDate) throws FlooringMasteryPersistenceException {
+        return dao.getAllOrdersByDate(orderWithDate);
+    }
+    
+    @Override
+    public List<Order> getOrderList(LocalDate enteredOrderDate) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -140,5 +145,7 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     public Order removeOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 
 }
