@@ -12,12 +12,13 @@ import java.util.List;
  *
  * @author raymondtam
  */
-public interface FlooringMasteryServiceLayer {
+public interface FlooringMasteryServiceLayer  {
+    void validateDate(String date) throws FlooringMasteryDateValidationException;
  
-    void createOrder(Order order) throws
+    void createOrder(Order order, String date) throws
             FlooringMasteryDuplicateIdException,
-            FlooringMasteryDataValidationException,
-            FlooringMasteryPersistenceException;
+            FlooringMasteryPersistenceException,
+            FlooringMasteryDateValidationException;
  
     List<Order> getAllOrders() throws
             FlooringMasteryPersistenceException;
