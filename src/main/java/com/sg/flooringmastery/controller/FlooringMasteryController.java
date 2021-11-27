@@ -74,7 +74,7 @@ public void addOrder() throws FlooringMasteryDateValidationException, FlooringMa
 
             switch (menuSelection) {
                 case 1:
-//                    displayOrders();
+                    displayOrders();
                     break;
                 case 2:
                    addOrder();
@@ -103,24 +103,24 @@ public void addOrder() throws FlooringMasteryDateValidationException, FlooringMa
 //    }
 }
   
-//  private void displayOrders() throws FlooringMasteryNoOrdersException, FlooringMasteryPersistenceException {
-//      view.displayListOrdersBanner();
-//      boolean errorsFound = false;
-//      List<Order> orderList = null;
-//      
-//      do {
-//          try {
-//              LocalDate enteredOrderDate = view.getOrderListByDate();
-//              orderList = service.getOrderList(enteredOrderDate); // need to add getOrderList on ServiceLayer
-//              view.displayOrderListBanner(enteredOrderDate);
-//              errorsFound = false;
-//          } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e) {
-//              errorsFound = true;
-//              view.displayErrorMessage(e.getMessage());
-//          }
-//      } while (errorsFound);
-//      view.displayOrderList(orderList);
-//  }
+ private void displayOrders() throws FlooringMasteryNoOrdersException, FlooringMasteryPersistenceException {
+      view.displayListOrdersBanner();
+      boolean errorsFound = false;
+      List<Order> allOrders = null;
+      
+      do {
+          try {
+              LocalDate enteredOrderDate = view.getOrderListByDate();
+              allOrders = service.getAllOrders(enteredOrderDate.toString());
+              view.displayOrderListBanner(enteredOrderDate);
+              errorsFound = false;
+          } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e) {
+              errorsFound = true;
+              view.displayErrorMessage(e.getMessage());
+          }
+      } while (errorsFound);
+      view.displayOrderList(allOrders);
+  }
 
  
 
