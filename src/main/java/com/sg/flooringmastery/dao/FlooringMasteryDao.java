@@ -33,9 +33,12 @@ public interface FlooringMasteryDao {
      * @return Student List containing all students on the roster.
      * @throws FlooringMasteryPersistenceException
      */
-    List<Order> getAllOrders()
-     throws FlooringMasteryPersistenceException;
+    
+    
+    List<Order> getAllOrders() throws FlooringMasteryPersistenceException;
+    
     String [] listAllOrders();
+    
     List <Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException;
 
     /**
