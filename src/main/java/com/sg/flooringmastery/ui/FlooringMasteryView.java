@@ -97,4 +97,28 @@ public class FlooringMasteryView {
         io.print("=== ERROR ===");
         io.print(errorMsg);
     }   
+    
+    public Order displayAddingSelection(){
+        io.print("==Adding Order==");
+        
+        int orderNumber = io.readInt("Please enter the order number: ");
+        String customerName = io.readString("Please enter the customer number: ");
+        String state = io.readString("Please enter the state: ");
+        String productType = io.readString("Please enter the product type: ");
+        BigDecimal area = io.readBigDecimal("Please enter the area");
+        
+        Order currentOrder = new Order(orderNumber);
+        currentOrder.setCustomerName(customerName);
+        currentOrder.setState(state);
+        currentOrder.setProductType(productType);
+        currentOrder.setArea(area);
+        return currentOrder;
+        
+                
+               
+    }
+    public String displayDate(){
+        String date = io.readString("Please enter the order date (must be a later date than today): ");
+        return date;
+    }
 }

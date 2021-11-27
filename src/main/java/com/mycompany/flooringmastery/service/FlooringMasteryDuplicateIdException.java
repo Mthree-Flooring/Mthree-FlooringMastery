@@ -8,6 +8,14 @@ package com.mycompany.flooringmastery.service;
  *
  * @author raymondtam
  */
-class FlooringMasteryDuplicateIdException extends Exception {
+public class FlooringMasteryDuplicateIdException extends Exception {
+
+    public FlooringMasteryDuplicateIdException(String message) {
+        super(message);
+    }
+
+    public FlooringMasteryDuplicateIdException(String message, Throwable cause) {
+        super(message, cause);
+    }
     
 }

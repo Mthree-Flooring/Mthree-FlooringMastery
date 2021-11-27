@@ -2,6 +2,8 @@ package com.sg.flooringmastery.controller;
 
 //import com.mycompany.flooringmastery.service.FlooringMasteryDataValidationException;
 //import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
+import com.mycompany.flooringmastery.service.FlooringMasteryDateValidationException;
+import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
 import com.mycompany.flooringmastery.service.FlooringMasteryNoOrdersException;
 import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 import com.sg.flooringmastery.dao.FlooringMasteryDaoFileImpl;
@@ -45,12 +47,24 @@ public class FlooringMasteryController {
     private int getMenuSelection() {
     return view.printMenuAndGetSelection();
 }
+    
+public void addOrder() throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException{
+   String newDate = view.displayDate();
+   service.validateDate(newDate);
+   Order newOrder = view.displayAddingSelection();
+   service.createOrder(newOrder, newDate);
+   
+   
+   
+   
+   
+}
 
 
 //private void exitMessage() {
 //    view.displayExitBanner();
 //}
-  public void run() {
+  public void run() throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException {
     boolean keepGoing = true;
     int menuSelection = 0;
 //    try {
@@ -63,7 +77,7 @@ public class FlooringMasteryController {
 //                    displayOrders();
                     break;
                 case 2:
-                    System.out.println("2");
+                   addOrder();
                     break;
                 case 3:
                      System.out.println("3");

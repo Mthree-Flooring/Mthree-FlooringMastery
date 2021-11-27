@@ -24,7 +24,7 @@ public interface FlooringMasteryDao {
      * student id if it exists, null otherwise
      * @throws FlooringMasteryPersistenceException
      */
-    Order addOrder(Integer orderNumber, Order order)
+    Order addOrder(Integer orderNumber, Order newOrder, String date)
      throws FlooringMasteryPersistenceException;
 
     /**
