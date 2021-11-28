@@ -116,9 +116,6 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
 
     @Override
     public void createOrder(Order order, String date) throws FlooringMasteryDuplicateIdException,FlooringMasteryDateValidationException, FlooringMasteryPersistenceException {
-   
-  
-      
          
          dao.addOrder(order.getOrderNumber(), order,date);
          

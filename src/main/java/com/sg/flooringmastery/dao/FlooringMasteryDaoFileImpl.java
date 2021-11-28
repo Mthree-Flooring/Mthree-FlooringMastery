@@ -45,9 +45,9 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         TAX_FILE = "Taxes.txt";
     }
 
-    public FlooringMasteryDaoFileImpl(String rosterTextFile) {
-        ORDER_FILE = rosterTextFile;
-    }
+    // public FlooringMasteryDaoFileImpl(String rosterTextFile) {
+    //     ORDER_FILE = rosterTextFile;
+    // }
 
     private Order unmarshallOrder(String orderAsText) {
 
