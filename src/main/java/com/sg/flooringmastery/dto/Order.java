@@ -1,6 +1,7 @@
 package com.sg.flooringmastery.dto;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 /*
@@ -13,6 +14,10 @@ import java.util.Objects;
  * @author raymondtam
  */
 public class Order {
+
+    public static List<Integer> getAllOrderNumbersForADate(String orderFileName) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     private int orderNumber;
     private String customerName;
     private String state;

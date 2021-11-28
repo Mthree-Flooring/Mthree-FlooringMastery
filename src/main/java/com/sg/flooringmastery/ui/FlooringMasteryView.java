@@ -3,6 +3,7 @@ package com.sg.flooringmastery.ui;
 import com.sg.flooringmastery.dto.Order;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /*
@@ -121,4 +122,47 @@ public class FlooringMasteryView {
         String date = io.readString("Please enter the order date (must be a later date than today): ");
         return date;
     }
+       //--------------------------- VIEW FOR REMOVE ORDER ----------------------------------------        
+    public void displayRemoveOrderBanner() {
+        io.print("=== Remove Order ===");
+    }
+    
+    public LocalDate getOrderDateRemoveOrder() {
+        io.print("What is the date of the order you want to remove?");
+        return io.readDate("Please enter a date in the format YYYY-MM-DD");
+    }
+    
+    public int getOrderNumberRemoveOrder(){
+        return io.readInt("What is the order number of the order you want to remove? ");
+    }
+   
+    public void displayOrderInformation(LocalDate orderDateInput, Order orderToRemove) {
+        io.print("=== Order Summary ===");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        io.print("Order date:         " + orderDateInput.format(formatter));
+        io.print("Customer Name:      " + orderToRemove.getCustomerName());
+        io.print("State: " +               orderToRemove.getState());
+        io.print("Product:            " + orderToRemove.getProductType());
+        io.print("Area required:      " +orderToRemove.getArea().toString() + " sqft");
+        io.print("Material cost:      $"+ orderToRemove.getMaterialCost().toString());
+        io.print("Labor cost:         $"+ orderToRemove.getLaborCost());
+        io.print("Tax:                $" + orderToRemove.getTax().toString());
+        io.print("---------------------------------");
+        io.print("Total:              $" + orderToRemove.getTotal().toString());
+    }
+    
+    public String getRemoveConfirmation() {
+        return io.readString("Are you sure you want to remove the order? (Y/N)");
+    }    
+    
+    public void displayRemoveSuccessBanner(Order removedOrder){
+        if (removedOrder==null) {
+            //do nothing, return to main menu
+            io.readString("Please hit enter to continue to main menu.");
+        } else {
+            //If new order is not null
+            io.print("=== Order Succesfully Removed ===");
+        }
+    }
+
 }

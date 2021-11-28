@@ -27,7 +27,17 @@ public interface FlooringMasteryServiceLayer  {
     Order getOrder(Integer orderNumber) throws
             FlooringMasteryPersistenceException;
  
-    Order removeOrder(Integer orderNumber) throws
-            FlooringMasteryPersistenceException;
- 
+    
+   Order removeOrder(Integer orderNumber) throws
+           FlooringMasteryPersistenceException;
+   Order removeOrderIfConfirmed(String removeConfirmation, String orderFile, int orderNumber) throws FlooringMasteryPersistenceException, FlooringMasteryOrderFileNotExistException;
+
+    public Order getOrder(String orderFileName, int orderNumberToRemove);
+
+    public int checkOrderNumExists(String orderFileName, int orderNumberInput);
+
+    public void checkOrderFileExists(String orderFileName);
+
+    public String createOrderFileNameFromDate(LocalDate orderDateInput);
+
 }

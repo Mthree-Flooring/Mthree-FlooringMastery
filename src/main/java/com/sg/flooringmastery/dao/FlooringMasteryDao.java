@@ -63,6 +63,8 @@ public interface FlooringMasteryDao {
      * was associated with the given student id
      * @throws FlooringMasteryPersistenceException
      */
-    Order removeOrder(Integer orderNumber)
+    Order removeOrder(Integer orderNumber) //String orderFile ?
      throws FlooringMasteryPersistenceException;
+
+    public Order removeOrder(String orderFile, int orderNumber);
 }

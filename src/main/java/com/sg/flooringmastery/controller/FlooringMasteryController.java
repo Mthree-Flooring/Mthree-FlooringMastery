@@ -5,6 +5,7 @@ package com.sg.flooringmastery.controller;
 import com.mycompany.flooringmastery.service.FlooringMasteryDateValidationException;
 import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
 import com.mycompany.flooringmastery.service.FlooringMasteryNoOrdersException;
+import com.mycompany.flooringmastery.service.FlooringMasteryOrderFileNotExistException;
 import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 import com.sg.flooringmastery.dao.FlooringMasteryDaoFileImpl;
 import com.sg.flooringmastery.dto.Order;
@@ -121,7 +122,41 @@ public void addOrder() throws FlooringMasteryDateValidationException, FlooringMa
       } while (errorsFound);
       view.displayOrderList(allOrders);
   }
+    private void removeOrder() throws FlooringMasteryNoOrdersException, FlooringMasteryPersistenceException, FlooringMasteryNoOrderNumException, FlooringMasteryOrderFileNotExistException{
+            view.displayRemoveOrderBanner();
+            boolean errorsFound = false;
+            do {
+                //Prompt user for the date & order number
+                LocalDate orderDateInput = view.getOrderDateRemoveOrder();
+                int orderNumberInput = view.getOrderNumberRemoveOrder();
+                try {
+                    //Check that the order exists
+                    //First, check for the file using the orderDateInput
+                    String orderFileName = service.createOrderFileNameFromDate(orderDateInput);
+                    service.checkOrderFileExists(orderFileName);
 
+                    //If the file exists, check if the order with the specified order number exists in the file
+                    int orderNumberToRemove = service.checkOrderNumExists(orderFileName, orderNumberInput);
+                    //If it doesn't exist, an exception is thrown. If it is, then remove the order.
+                    Order orderToRemove = service.getOrder(orderFileName, orderNumberToRemove);
+
+                    //Display the order information
+                    view.displayOrderInformation(orderDateInput, orderToRemove);
+
+                    //Prompt the user if they are sure they want to remove the order
+                    String removeConfirmation = view.getRemoveConfirmation();
+
+                    //If they are sure, remove the order, if not return to menu. removedOrder will be null if no order to be removed.
+                    Order removedOrder = service.removeOrderIfConfirmed(removeConfirmation, orderFileName, orderNumberInput);
+
+                    view.displayRemoveSuccessBanner(removedOrder);
+                    errorsFound = false;
+                } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e)  {
+                    errorsFound = true;
+                    view.displayErrorMessage(e.getMessage());
+                }
+            } while (errorsFound);
+        }
  
 
 }

@@ -208,6 +208,11 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         out.close();
     }
 
+    @Override
+    public Order getOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     interface StringFunction {
 
         String run(String str);
@@ -334,10 +339,10 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         return allOrders;
     }
 
-    @Override
-    public Order getOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  //  @Override
+  //  public Order getOrder(int orderNumber) throws FlooringMasteryPersistenceException {
+       //return getOrder;
+   // }
 
     @Override
     public Order removeOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
