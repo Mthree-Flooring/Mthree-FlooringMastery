@@ -221,36 +221,41 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
 
     private void loadCustomRoster(String date) throws FlooringMasteryPersistenceException {
         Scanner scanner = null;
-
+        //parse 2021-11-21 format into 20211121 format
+        String[] dateArr = date.split("-");
+        String joinArrDate = String.join("", dateArr);
         try {
 
             StringFunction orderDate = (s) -> "Orders_" + s;
             scanner = new Scanner(
                     new BufferedReader(
-                            new FileReader(printFormatted(date, orderDate))));
+                            new FileReader(printFormatted(joinArrDate, orderDate))));
+            
 
         } catch (FileNotFoundException e) {
             StringFunction orderDate = (s) -> "Orders_" + s;
-            File newFile = new File(printFormatted(date, orderDate));
-            try{
-            if(newFile.createNewFile()){
-                System.out.println("File Created!");
+            String fileName = printFormatted(joinArrDate, orderDate);
+            File newFile = new File("Orders/"+fileName);
+
+            try {
+                if (newFile.createNewFile()) {
+                    System.out.println("File Created!");
+                    scanner = new Scanner(
+                            new BufferedReader(
+                                    new FileReader(printFormatted(joinArrDate, orderDate))));
+                }
+            } catch (IOException ex) {
+                throw new FlooringMasteryPersistenceException(
+                        "Could not save order data.", ex);
             }
-            }
-            catch(IOException ex){
-                 throw new FlooringMasteryPersistenceException(
-                    "Could not save order data.", ex);
-            }
-            loadCustomRoster(date);
+//            loadCustomRoster(date);
 
         }
         // currentLine holds the most recent line read from the file
         String currentLine;
         // currentStudent holds the most recent student unmarshalled
         Order currentOrder;
-        // Go through ROSTER_FILE line by line, decoding each line into a 
-        // Student object by calling the unmarshallStudent method.
-        // Process while we have more lines in the file
+
         while (scanner.hasNextLine()) {
             // get the next line in the file
             currentLine = scanner.nextLine();
@@ -264,15 +269,15 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         // close scanner
         scanner.close();
     }
-    
-       private void writeCustomRoster(String date) throws FlooringMasteryPersistenceException {
+
+    private void writeCustomRoster(String date) throws FlooringMasteryPersistenceException {
         // NOTE FOR APPRENTICES: We are not handling the IOException - but
         // we are translating it to an application specific exception and 
         // then simple throwing it (i.e. 'reporting' it) to the code that
         // called us.  It is the responsibility of the calling code to 
         // handle any errors that occur.
         PrintWriter out;
-        
+
         try {
             StringFunction orderDate = (s) -> "Orders_" + s;
             out = new PrintWriter(new FileWriter(printFormatted(date, orderDate)));
@@ -306,30 +311,35 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         Order addedOrder = order.put(newOrder.getOrderNumber(), newOrder);
         writeCustomRoster(date);
         return addedOrder;
-        
+
     }
-    
-        @Override
+
+    @Override
     public String[] listAllOrders() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public List<Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException {
+
         List<Order> allOrdersByDate = new ArrayList(order.values());
         this.order.clear();
         return allOrdersByDate;
+        
     }
 
     @Override
     public List<Order> getAllOrders() throws FlooringMasteryPersistenceException {
-        String [] allOrderFiles = listAllOrders();
-        
+
+        String[] allOrderFiles = listAllOrders();
+
         List<Order> allOrders = new ArrayList<>();
-        
+
         for (String orderFile : allOrderFiles) {
             List<Order> ordersForDate = getAllOrdersByDate(orderFile);
-            ordersForDate.forEach(order -> { allOrders.add(order); });
+            ordersForDate.forEach(order -> {
+                allOrders.add(order);
+            });
         }
         return allOrders;
     }

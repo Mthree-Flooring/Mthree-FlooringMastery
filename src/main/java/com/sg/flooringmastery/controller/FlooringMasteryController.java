@@ -64,7 +64,7 @@ public void addOrder() throws FlooringMasteryDateValidationException, FlooringMa
 //private void exitMessage() {
 //    view.displayExitBanner();
 //}
-  public void run() throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException {
+  public void run() throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException, FlooringMasteryNoOrdersException, FlooringMasteryNoOrdersException {
     boolean keepGoing = true;
     int menuSelection = 0;
 //    try {
@@ -114,7 +114,7 @@ public void addOrder() throws FlooringMasteryDateValidationException, FlooringMa
               allOrders = service.getAllOrders(enteredOrderDate.toString());
               view.displayOrderListBanner(enteredOrderDate);
               errorsFound = false;
-          } catch (DateTimeException | FlooringMasteryNoOrdersException | FlooringMasteryPersistenceException e) {
+          } catch (DateTimeException | FlooringMasteryPersistenceException e) {
               errorsFound = true;
               view.displayErrorMessage(e.getMessage());
           }

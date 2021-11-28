@@ -6,6 +6,7 @@ package com.sg.flooringmastery;
 
 import com.mycompany.flooringmastery.service.FlooringMasteryDateValidationException;
 import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
+import com.mycompany.flooringmastery.service.FlooringMasteryNoOrdersException;
 import com.mycompany.flooringmastery.service.FlooringMasteryServiceLayerImpl;
 import com.sg.flooringmastery.controller.FlooringMasteryController;
 import com.sg.flooringmastery.dao.FlooringMasteryAuditDaoFileImpl;
@@ -43,7 +44,7 @@ public class App {
 //    // Kick off the Controller
 //    controller.run();
 //}
-    public static void main(String[] args) throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException {
+    public static void main(String[] args) throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException, FlooringMasteryNoOrdersException {
 //        UserIO myIo = new UserIOConsoleImpl();
 //        FlooringMasteryView myView = new FlooringMasteryView(myIo);
 //        FlooringMasteryDao myDao = new FlooringMasteryDaoFileImpl();
