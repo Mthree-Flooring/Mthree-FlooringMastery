@@ -30,14 +30,19 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
 
     public final String ORDER_FILE;
     public static final String DELIMITER = ",";
+            
+            private final String orderFolder;
 
     public FlooringMasteryDaoFileImpl() {
         ORDER_FILE = "Orders_06012013.txt"; //is a sample file which is included in the sample download above.
+        this.orderFolder = "Orders_20211128.txt";
 
     }
 
-    public FlooringMasteryDaoFileImpl(String rosterTextFile) {
+    public FlooringMasteryDaoFileImpl(String rosterTextFile, String orderFolder) {
         ORDER_FILE = rosterTextFile;
+        this.orderFolder = orderFolder;
+        
     }
 
     private Order unmarshallOrder(String orderAsText) {
@@ -304,6 +309,53 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
         // Clean up
         out.close();
     }
+       
+       private void loadOrders(String orderFile) throws FlooringMasteryPersistenceException {
+          Scanner sc;
+          
+          try {
+              sc = new Scanner(new BufferedReader(new FileReader(this.orderFolder + "\\" + orderFile)));
+          } catch (FileNotFoundException e) {
+              throw new FlooringMasteryPersistenceException("-_- Could not load order data into memory", e);
+          }
+          
+          String currentLine;
+          Order currentOrder;
+          
+          while (sc.hasNextLine()) {
+              currentLine = sc.nextLine();
+              
+              if (currentLine.startsWith("OrderNumber")) {
+                  continue;
+          }
+              
+          currentOrder = unmarshallOrder(currentLine);
+          
+          order.put(currentOrder.getOrderNumber(), currentOrder);
+                  }
+          sc.close();
+      }
+      private void writeOrders(String orderFile) throws FlooringMasteryPersistenceException {
+          PrintWriter out;
+          
+          try {
+              out = new PrintWriter(new FileWriter(this.orderFolder + "\\" + orderFile));
+          } catch (IOException e) {
+              throw new FlooringMasteryPersistenceException("Could not save order data.", e);
+          }
+          
+          out.println("OrderNumber, CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total");
+          String orderAsText;
+          List <Order> orderList = this.getAllOrdersByDate(orderFile);
+          
+          for (Order currentOrder : orderList) {
+              orderAsText = marshallOrder(currentOrder);
+              out.println("orderAsText");
+              out.flush();
+          }
+          out.close();
+          
+      }
 
     @Override
     public Order addOrder(Integer orderNumber, Order newOrder, String date) throws FlooringMasteryPersistenceException {
@@ -321,6 +373,7 @@ public class FlooringMasteryDaoFileImpl implements FlooringMasteryDao {
 
     @Override
     public List<Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException {
+        loadOrders(orderFile);
         List<Order> allOrdersByDate = new ArrayList(order.values());
         this.order.clear();
         return allOrdersByDate;
