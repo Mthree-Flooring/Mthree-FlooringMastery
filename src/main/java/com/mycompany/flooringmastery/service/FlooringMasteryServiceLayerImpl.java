@@ -153,7 +153,7 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
             return removedOrder;
         }
         //if remove confirmation is anything other than Y or y, return null 
-        return null;
+        return  null;
     }
     
     private void removeFileIfEmpty (String orderFile) throws FlooringMasteryPersistenceException, FlooringMasteryOrderFileNotExistException {

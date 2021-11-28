@@ -1,0 +1,2 @@
+OrderNumber,CustomerName,State,TaxRate,ProductType,Area,CostPerSquareFoot,LaborCostPerSquareFoot,MaterialCost,LaborCost,Tax,Total
+1,Your Mom,TX,4.45,Laminate,100,515.00,475.00,175.00,210.00,17.13,402.13
