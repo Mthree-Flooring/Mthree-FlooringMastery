@@ -52,6 +52,7 @@ public void addOrder() throws FlooringMasteryDateValidationException, FlooringMa
    String newDate = view.displayDate();
    service.validateDate(newDate);
    Order newOrder = view.displayAddingSelection();
+
    service.createOrder(newOrder, newDate);
    
    

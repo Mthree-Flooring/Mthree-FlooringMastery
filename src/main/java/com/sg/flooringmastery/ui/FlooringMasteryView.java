@@ -102,7 +102,7 @@ public class FlooringMasteryView {
         io.print("==Adding Order==");
         
         int orderNumber = io.readInt("Please enter the order number: ");
-        String customerName = io.readString("Please enter the customer number: ");
+        String customerName = io.readString("Please enter the customer name: ");
         String state = io.readString("Please enter the state: ");
         String productType = io.readString("Please enter the product type: ");
         BigDecimal area = io.readBigDecimal("Please enter the area");
