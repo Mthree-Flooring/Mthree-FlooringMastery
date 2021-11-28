@@ -4,6 +4,9 @@
  */
 package com.sg.flooringmastery;
 
+import com.mycompany.flooringmastery.service.FlooringMasteryDateValidationException;
+import com.mycompany.flooringmastery.service.FlooringMasteryDuplicateIdException;
+import com.mycompany.flooringmastery.service.FlooringMasteryNoOrdersException;
 import com.mycompany.flooringmastery.service.FlooringMasteryServiceLayerImpl;
 import com.sg.flooringmastery.controller.FlooringMasteryController;
 import com.sg.flooringmastery.dao.FlooringMasteryAuditDaoFileImpl;
@@ -16,6 +19,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.sg.flooringmastery.dao.FlooringMasteryAuditDao;
 import com.sg.flooringmastery.dao.FlooringMasteryDao;
 import com.mycompany.flooringmastery.service.FlooringMasteryServiceLayer;
+import com.sg.flooringmastery.dao.FlooringMasteryPersistenceException;
 
 /**
  *
@@ -40,7 +44,7 @@ public class App {
 //    // Kick off the Controller
 //    controller.run();
 //}
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FlooringMasteryDateValidationException, FlooringMasteryDuplicateIdException, FlooringMasteryPersistenceException, FlooringMasteryNoOrdersException {
 //        UserIO myIo = new UserIOConsoleImpl();
 //        FlooringMasteryView myView = new FlooringMasteryView(myIo);
 //        FlooringMasteryDao myDao = new FlooringMasteryDaoFileImpl();

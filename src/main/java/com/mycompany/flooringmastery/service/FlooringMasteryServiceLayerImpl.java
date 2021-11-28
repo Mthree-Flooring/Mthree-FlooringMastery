@@ -10,6 +10,9 @@ import com.sg.flooringmastery.ui.FlooringMasteryView;
 import java.util.List;
 import com.sg.flooringmastery.dao.FlooringMasteryAuditDao;
 import com.sg.flooringmastery.dao.FlooringMasteryDao;
+import java.time.LocalDate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -93,14 +96,40 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
 //                    "ERROR: All fields [First Name, Last Name, Cohort] are required.");
 //        }
 //    }
+  
+   @Override
+    public void validateDate(String date) throws FlooringMasteryDateValidationException{
+        LocalDate now = LocalDate.now();
+        LocalDate input = LocalDate.parse(date);
+        boolean isAfter = input.isAfter(now);
+        
+        
+        if(isAfter==false){
+            throw new FlooringMasteryDateValidationException("Please create an order with a date after today");
+        }
+    }
+    
+    
+    
+    
+    
 
     @Override
-    public void createOrder(Order order) throws FlooringMasteryDuplicateIdException, FlooringMasteryDataValidationException, FlooringMasteryPersistenceException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void createOrder(Order order, String date) throws FlooringMasteryDuplicateIdException,FlooringMasteryDateValidationException, FlooringMasteryPersistenceException {
+         
+         dao.addOrder(order.getOrderNumber(), order,date);
+         
+         
+      
     }
 
     @Override
-    public List<Order> getAllOrders() throws FlooringMasteryPersistenceException {
+    public List<Order> getAllOrders(String orderWithDate) throws FlooringMasteryPersistenceException {
+        return dao.getAllOrdersByDate(orderWithDate);
+    }
+    
+    @Override
+    public List<Order> getOrderList(LocalDate enteredOrderDate) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -113,5 +142,7 @@ public class FlooringMasteryServiceLayerImpl implements FlooringMasteryServiceLa
     public Order removeOrder(Integer orderNumber) throws FlooringMasteryPersistenceException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+
 
 }

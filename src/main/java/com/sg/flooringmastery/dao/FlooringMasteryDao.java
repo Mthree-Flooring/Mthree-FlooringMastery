@@ -24,7 +24,7 @@ public interface FlooringMasteryDao {
      * student id if it exists, null otherwise
      * @throws FlooringMasteryPersistenceException
      */
-    Order addOrder(Integer orderNumber, Order order)
+    Order addOrder(Integer orderNumber, Order newOrder, String date)
      throws FlooringMasteryPersistenceException;
 
     /**
@@ -33,8 +33,13 @@ public interface FlooringMasteryDao {
      * @return Student List containing all students on the roster.
      * @throws FlooringMasteryPersistenceException
      */
-    List<Order> getAllOrders()
-     throws FlooringMasteryPersistenceException;
+    
+    
+    List<Order> getAllOrders() throws FlooringMasteryPersistenceException;
+    
+    String [] listAllOrders();
+    
+    List <Order> getAllOrdersByDate(String orderFile) throws FlooringMasteryPersistenceException;
 
     /**
      * Returns the student object associated with the given student id.
